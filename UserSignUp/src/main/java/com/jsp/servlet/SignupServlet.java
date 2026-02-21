@@ -25,9 +25,9 @@ public class SignupServlet extends HttpServlet {
         Configuration configuration = new Configuration();
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         configuration.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
-        configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/LoginPage");
-        configuration.setProperty("hibernate.connection.username", "postgres");
-        configuration.setProperty("hibernate.connection.password", "root");
+         configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://dpg-d6crach5pdvs73f93pcg-a:5432/restaurant_sbm3");
+        configuration.setProperty("hibernate.connection.username", "restaurant_user");
+        configuration.setProperty("hibernate.connection.password", "qvaq0YwP70ShVopCOpoJBtPMD04WMaRu");
         configuration.setProperty("hibernate.hbm2ddl.auto", "update");
         configuration.setProperty("hibernate.show_sql", "true");
         configuration.setProperty("hibernate.format_sql", "true");
@@ -77,4 +77,5 @@ public class SignupServlet extends HttpServlet {
              sessionFactory.close();
          }
      }
+
  }
