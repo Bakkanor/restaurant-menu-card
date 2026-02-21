@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Screen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .header {
+            background-color: purple;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .order-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .order-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-card h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .order-card p {
+            margin: 5px 0;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .complete-button {
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: purple;
+            color: white;
+            font-size: 16px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">👨‍🍳 Kitchen Screen</div>
+
+    <div class="order-container" id="orderContainer"></div>
+
+    <div class="footer">© || Shree Sadguru Krupa || | All Rights Reserved</div>
+
+    <script>
+        function renderKitchenScreen() {
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
+            const container = document.getElementById("orderContainer");
+            container.innerHTML = "";
+
+            orders.forEach((order, index) => {
+                const orderCard = document.createElement("div");
+                orderCard.classList.add("order-card");
+                orderCard.innerHTML = `
+                    <div>
+                        <h3>Table ${order.table}</h3>
+                        <p>${order.name} x ${order.quantity}</p>
+                    </div>
+                    <button class="complete-button" onclick="completeOrder(${index})">Complete</button>
+                `;
+                container.appendChild(orderCard);
+            });
+        }
+
+        function completeOrder(index) {
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders.splice(index, 1);
+            localStorage.setItem("orders", JSON.stringify(orders));
+            renderKitchenScreen();
+        }
+
+        // Initial render
+        renderKitchenScreen();
+
+        // Auto refresh every 1 second
+        setInterval(renderKitchenScreen, 1000);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+   
+    /* Basic Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+      
+      header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      
+  /********** nav bar *****/    
+  
+      #navButton {
+    position: absolute;
+    top: 2rem;
+    left  :3rem;
+    width: 2rem;
+    z-index: 100;
+    display: none;
+}
+
+#crossButton{
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    font-size: 2.3rem;
+    color: #FFF;
+    z-index: 100;
+    display: none;
+}
+
+.navBar {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 4.5rem;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom: 0.1mm solid rgba(88, 88, 88, 0.25);
+    z-index: 50;
+}
+
+#navBarItem>img {
+    height: 4.5rem;
+    /* width: 5rem; */
+}
+
+#navBarItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3rem;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+}
+
+.links>li {
+    list-style-type: none;
+}
+
+.links>li>a {
+    position: relative;
+}
+
+.item {
+    text-decoration: none;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.2rem;
+    margin: 0 12px;
+    padding: 7px 10px;
+    border-radius: 9px;
+    transition: 1s;
+}
+
+.links a:after,
+#login:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right; 
+    transition: transform 0.25s ease-out;
+  }
+  
+  .item:hover:after,
+  #login:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    width: 100%;
+  }
+
+#login {
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.2rem;
+    right: 4%;
+    top: 17px;
+}
+
+#login2{
+    display: none;
+}
+      
+/********** Menu Item**************************/
+      
+      
+      .Fastfood {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        justify-content: center;
+      }
+      
+      .Dinner {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        justify-content: center;
+      }
+      
+      .Ice-Creams {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        justify-content: center;
+      }
+      
+        .Drinkings {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        justify-content: center;
+      }
+      
+       .Breakfast {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        justify-content: center;
+      }
+      
+      .menu-item {
+        background-color: #fff;
+        padding: 15px;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .menu-item img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      
+      .menu-item h3 {
+        font-size: 1.5rem;
+        margin-top: 10px;
+      }
+      
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+      
+      button:hover {
+        background-color: #45a049;
+      }
+      
+      .order-summary {
+        margin-top: 50px;
+        text-align: center;
+      }
+      
+      .order-summary h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+      
+      #orderList {
+        list-style-type: none;
+        padding: 0;
+      }
+      
+      #orderList li {
+        padding: 10px;
+        background-color: #fff;
+        margin: 5px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      #placeOrderButton {
+        background-color: #FF6347;
+        margin-top: 20px;
+      }
+      
+      
+      

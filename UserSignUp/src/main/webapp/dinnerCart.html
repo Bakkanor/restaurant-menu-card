@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .header {
+            background-color: purple;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 22px;
+        }
+
+        .cart-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .cart-item h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .cart-item button {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .cart-item button:hover {
+            background-color: #b71c1c;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: purple;
+            color: white;
+            font-size: 16px;
+            margin-top: 30px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .place-order {
+            background-color: #388e3c;
+            color: white;
+        }
+
+        .cancel-order {
+            background-color: #d32f2f;
+            color: white;
+        }
+        
+        .menu {
+            background-color: #388e3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">🛒 Your Cart</div>
+
+    <div class="cart-container" id="cartContainer"></div>
+
+    <h3 style="text-align: center;">Total: ₹<span id="totalPrice">0</span></h3>
+
+    <div class="buttons">
+        <button class="place-order" onclick="placeOrder()">Place Order</button>
+        <button class="cancel-order" onclick="cancelOrder()">Cancel Order</button>
+        <button class="menu" onclick="backToMenu()">Back To Menu</button>
+    </div>
+
+    <div class="footer">© || Shree Sadguru Krupa || | All Rights Reserved</div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function updateCart() {
+            const cartContainer = document.getElementById("cartContainer");
+            const totalPriceElem = document.getElementById("totalPrice");
+            cartContainer.innerHTML = "";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                const cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                cartItem.innerHTML = `
+                    <div>
+                        <h3>${item.name} (Table ${item.table})</h3>
+                        <p>₹${item.price} x ${item.quantity}</p>
+                    </div>
+                    <div>
+                        <button onclick="changeQuantity(${index}, 1)">+</button>
+                        <button onclick="changeQuantity(${index}, -1)">-</button>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+                cartContainer.appendChild(cartItem);
+            });
+
+            totalPriceElem.innerText = total;
+        }
+
+        function changeQuantity(index, amount) {
+            cart[index].quantity += amount;
+            if (cart[index].quantity <= 0) cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCart();
+        }
+
+        function placeOrder() {
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders = orders.concat(cart);
+            localStorage.setItem("orders", JSON.stringify(orders));
+            cart = [];
+            localStorage.removeItem("cart");
+            alert("Order placed!");
+            updateCart();
+        }
+
+        function cancelOrder() {
+            localStorage.removeItem("cart");
+            alert("Order canceled!");
+            window.location.href = 'dinner.html';
+        }
+        
+        function backToMenu() {
+        	if (cart.length > 0) {
+                localStorage.setItem("selectedTable", cart[0].table);
+            }
+            window.location.href = 'dinner1.html';
+        }
+
+
+        updateCart();
+    </script>
+
+</body>
+</html>
